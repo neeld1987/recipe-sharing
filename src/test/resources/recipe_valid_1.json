@@ -1,0 +1,20 @@
+{
+  "title": "Spaghetti Carbonara",
+  "description": "Just make Spaghetti Carbonara",
+  "ingredients": [
+    {
+      "id": 1,
+      "value": 8,
+      "unit": "pc",
+      "type": "egg"
+    },
+    {
+      "id": 2,
+      "value": 500,
+      "unit": "g",
+      "type": "spaghetti"
+    }
+  ],
+  "instructions": "DIY",
+  "servings": 4
+}
