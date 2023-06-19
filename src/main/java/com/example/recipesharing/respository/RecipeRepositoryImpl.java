@@ -1,5 +1,6 @@
 package com.example.recipesharing.respository;
 
+import com.example.recipesharing.dto.RecipeSearchResult;
 import com.example.recipesharing.model.Recipe;
 import com.example.recipesharing.model.RecipeCreator;
 import jakarta.persistence.EntityManager;
@@ -7,6 +8,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +32,12 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom{
         query.setParameter(userNameParam, "%" +userName +"%");
 
         List<Recipe> recipeList = query.getResultList();
+
+        RecipeSearchResult recipeSearchResult = new RecipeSearchResult(recipeList.get(0).getTitle(),
+                recipeList.get(0).getDescription(), recipeList.get(0).getIngredients(),
+                recipeList.get(0).getInstructions(), recipeList.get(0).getServings(), recipeList.get(0).getUser().getUserName());
+
+
         return recipeList;
     }
 

@@ -1,0 +1,26 @@
+{
+  "title": "Fried Rice",
+  "description": "Easy Fried Rice",
+  "ingredients": [
+    {
+      "id": 1,
+      "value": 4,
+      "unit": "pc",
+      "type": "egg"
+    },
+    {
+      "id": 1,
+      "value": 150,
+      "unit": "g",
+      "type": "rice"
+    },
+    {
+      "id": 2,
+      "value": 500,
+      "unit": "g",
+      "type": "chicken"
+    }
+  ],
+  "instructions": "DIY",
+  "servings": 4
+}

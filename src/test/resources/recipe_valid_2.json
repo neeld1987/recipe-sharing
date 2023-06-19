@@ -1,0 +1,20 @@
+{
+  "title": "Eggplant shakshuka",
+  "description": "Eggplant shakshuka made easy",
+  "ingredients": [
+    {
+      "id": 1,
+      "value": 4,
+      "unit": "pc",
+      "type": "egg"
+    },
+    {
+      "id": 2,
+      "value": 1,
+      "unit": "kg",
+      "type": "eggplant"
+    }
+  ],
+  "instructions": "DIY",
+  "servings": 4
+}

@@ -5,9 +5,7 @@ import com.example.recipesharing.dto.RecipeDTO;
 import com.example.recipesharing.model.Ingredient;
 import com.example.recipesharing.model.Recipe;
 import com.example.recipesharing.model.RecipeCreator;
-import com.example.recipesharing.model.constants.IngredientUnit;
 import com.example.recipesharing.respository.RecipeRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

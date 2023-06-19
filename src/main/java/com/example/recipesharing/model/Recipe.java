@@ -2,7 +2,6 @@ package com.example.recipesharing.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
