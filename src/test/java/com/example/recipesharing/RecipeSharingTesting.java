@@ -50,6 +50,20 @@ public class RecipeSharingTesting {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
+        // same three requests without basic auth - execution of these three should fail
+        RequestBuilder createRecipeWithoutAuth = MockMvcRequestBuilders.post("/createRecipe")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(fileConverter.fromFile("recipe_valid_1.json"));
+
+        RequestBuilder searchRecipeByTitleWithoutAuth = MockMvcRequestBuilders.get("/searchRecipeByRecipeTitle/Spaghetti Carbonara")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        RequestBuilder searchRecipeByUserNameWithoutAuth = MockMvcRequestBuilders.get("/searchRecipeByUserName/user8")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
         mockMvc.perform(registerUser)
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.userName").value("user8"))
@@ -72,6 +86,20 @@ public class RecipeSharingTesting {
                 .andExpect(MockMvcResultMatchers.status().isFound())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].title").value("Spaghetti Carbonara"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].description").value("Just make Spaghetti Carbonara"));
+
+        // next three requests should fail
+        mockMvc
+                .perform(createRecipeWithoutAuth)
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+
+        mockMvc
+                .perform(searchRecipeByTitleWithoutAuth)
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+
+        mockMvc
+                .perform(searchRecipeByUserNameWithoutAuth)
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+
     }
 
 
