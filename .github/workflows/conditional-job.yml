@@ -24,8 +24,7 @@ jobs:
           $HasDiff = $SourceDiff.Length -gt 0
           
           # Set the output named "docs_changed"
-          Write-Host "::set-output name=docs_changed::$HasDiff"
-          
+          Write-Host "::set-output docs_changed=$HasDiff" >> $GITHUB_OUTPUT
 
   # Run the job only with "docs_changed" equals "True"
   conditional_job:
