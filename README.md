@@ -11,6 +11,7 @@ A set of Rest endpoint to register user, create recipe and search recipe.
 2. For a dataset not big enough, using elasticsearch might have been overkill. For now normal Criteria query has been used for search.
 
 3. Only Authentication has been taken care of for now, 'Role'/'Authority' has not been implemented.
+4. "Recipe Recommendations" has not been implemented. 
 
 4. "Recipe Recommendations" has not been implemented.
 
