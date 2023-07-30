@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          # Checkout as many commits as needed for the diff
+          # Checkout as many commits as needed for the difference
           fetch-depth: 2
       - shell: pwsh
         id: check_file_changed
