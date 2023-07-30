@@ -19,7 +19,9 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Recipe saveRecipe(RecipeDTO recipeDTO, RecipeCreator recipeCreator) {
-
+        /*
+        Create recipe and save
+         */
         Recipe recipe = new Recipe();
         recipe.setDescription(recipeDTO.getDescription());
         recipe.setInstructions(recipeDTO.getInstructions());
