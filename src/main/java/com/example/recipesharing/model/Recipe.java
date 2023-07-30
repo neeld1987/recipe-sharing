@@ -1,6 +1,5 @@
 package com.example.recipesharing.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import javax.validation.constraints.NotEmpty;
