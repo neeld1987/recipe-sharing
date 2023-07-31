@@ -23,7 +23,7 @@ jobs:
           echo $changeList
           
           # Check if a file under src/main/frontend or with the .md extension has changed (added, modified, deleted)
-          $SourceDiff = $diff | Where-Object { $_ -notmatch '^src/main/frontend/' }
+          $SourceDiff = $changeList | Where-Object { $_ -notmatch '^src/main/frontend/' }
           $HasDiff = $SourceDiff.Length -gt 0
           
           # Set the output named "docs_changed"
