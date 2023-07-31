@@ -17,7 +17,6 @@ jobs:
         id: check_file_changed
         run: |
           # Diff HEAD with the previous commit
-          $diff = git diff --name-only HEAD^ HEAD
           $commitHash = git rev-parse HEAD
           $changeList = git diff-tree --no-commit-id --name-only $commitHash -r
           echo $changeList
@@ -25,6 +24,7 @@ jobs:
           # Check if a file under src/main/frontend or with the .md extension has changed (added, modified, deleted)
           $SourceDiff = $changeList | Where-Object { $_ -notmatch '^src/main/frontend/' }
           $HasDiff = $SourceDiff.Length -gt 0
+          echo $HasDiff
           
           # Set the output named "docs_changed"
           Write-Host "::set-output name=docs_changed::$HasDiff"
