@@ -19,7 +19,7 @@ jobs:
           # Diff HEAD with the previous commit
           $diff = git diff --name-only HEAD^ HEAD
           $commitHash = git rev-parse HEAD
-          $changeList = git show $commitHash --name-only
+          $changeList = git diff-tree --no-commit-id --name-only $commitHash -r
           echo $changeList
           
           # Check if a file under src/main/frontend or with the .md extension has changed (added, modified, deleted)
