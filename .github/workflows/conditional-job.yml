@@ -24,7 +24,7 @@ jobs:
             echo "$currentBranch"
             $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
             echo "$changedFiles"
-            for file in $changedFiles; do
+            for file in ${$changedFiles}; do
               echo "$file was changed"
             done
       
