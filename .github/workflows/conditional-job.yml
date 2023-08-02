@@ -18,12 +18,12 @@ jobs:
         - name: List all changed files
           run: |
             # Diff HEAD with the previous commit
-            $diff = git diff --name-only HEAD^ HEAD
-            echo $diff
-            $currentBranch = git branch --contains HEAD
-            echo $currentBranch
-            $changedFiles = git diff --name-only $currentBranch $(git merge-base $currentBranch master)
-            echo $changedFiles
+            $diff=git diff --name-only HEAD^ HEAD
+            echo "$diff"
+            $currentBranch=git branch --contains HEAD
+            echo "$currentBranch"
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
+            echo "$changedFiles"
             for file in $changedFiles; do
               echo "$file was changed"
             done
