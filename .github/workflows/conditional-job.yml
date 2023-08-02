@@ -20,7 +20,11 @@ jobs:
 
         - name: List all changed files
           run: |
-            for file in ${{ steps.changed-files.outputs.all }}; do
+            $currentBranch = git branch --show-current
+            echo $currentBranch
+            $changedFiles = git diff --name-only $currentBranch $(git merge-base $currentBranch master)
+            echo $changedFiles
+            for file in ${{ $changedFiles }}; do
               echo "$file was changed"
             done
       
