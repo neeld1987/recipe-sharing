@@ -17,6 +17,7 @@ jobs:
         - shell: pwsh
           id: list_all_changed_files
           run: |
+            git fetch origin master:master
             $currentBranch=git branch --show-current
             echo "$currentBranch"
             $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
