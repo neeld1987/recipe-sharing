@@ -27,7 +27,7 @@ jobs:
                
             }
             
-            $SourceDiff = $$changedFiles | Where-Object { $_ -notmatch '^src/main/frontend/' }
+            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch '^src/main/frontend/' }
             $HasDiff = $SourceDiff.Length -gt 0
             echo $HasDiff
       
