@@ -19,9 +19,9 @@ jobs:
           run: |
             $currentBranch = git branch --show-current
             echo $currentBranch
-            $changedFiles = git diff --name-only $currentBranch $(git merge-base $currentBranch master)
-            echo $changedFiles
-            for file in ${{ $changedFiles }}; do
+            #$changedFiles = git diff --name-only $currentBranch $(git merge-base $currentBranch master)
+            #echo $changedFiles
+            for file in ${{ git diff --name-only $currentBranch $(git merge-base $currentBranch master) }}; do
               echo "$file was changed"
             done
       
