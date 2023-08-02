@@ -17,6 +17,8 @@ jobs:
 
         - name: List all changed files
           run: |
+            $diff = git diff --name-only HEAD^ HEAD
+            echo $diff
             $currentBranch = git branch --contains HEAD
             echo $currentBranch
             $changedFiles = git diff --name-only $currentBranch $(git merge-base $currentBranch master)
