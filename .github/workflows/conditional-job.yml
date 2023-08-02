@@ -17,10 +17,7 @@ jobs:
         - shell: pwsh
           id: list_all_changed_files
           run: |
-            # Diff HEAD with the previous commit
-            $diff=git diff --name-only HEAD^ HEAD
-            echo "$diff"
-            $currentBranch=git branch --contains HEAD
+            $currentBranch=git branch --show-current
             echo "$currentBranch"
             $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
             echo "$changedFiles"
