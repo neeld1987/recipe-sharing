@@ -15,7 +15,7 @@ jobs:
 
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - shell: pwsh
-          id: List all changed files
+          id: list_all_changed_files
           run: |
             # Diff HEAD with the previous commit
             $diff=git diff --name-only HEAD^ HEAD
