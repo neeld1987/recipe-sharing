@@ -24,7 +24,12 @@ jobs:
             echo "$changedFiles"
             foreach ($file in $changedFiles) {
                echo $file
+               
             }
+            
+            $SourceDiff = $$changedFiles | Where-Object { $_ -notmatch '^src/main/frontend/' }
+            $HasDiff = $SourceDiff.Length -gt 0
+            echo $HasDiff
       
           
 
