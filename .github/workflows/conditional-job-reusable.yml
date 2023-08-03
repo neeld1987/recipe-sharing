@@ -30,7 +30,7 @@ jobs:
           run: |
             $targetBranch = ${{inputs.targetBranch}}
             echo $targetBranch
-            git fetch origin $targetBranch:$targetBranch
+            git fetch origin ${targetBranch}:${targetBranch}
             $currentBranch=git branch --show-current
             echo "$currentBranch"
             $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch $targetBranch)
