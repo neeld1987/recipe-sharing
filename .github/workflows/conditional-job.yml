@@ -4,35 +4,42 @@ on:
 
 jobs:
   conditional_job_check_files:
-    runs-on: 'ubuntu-20.04'
-    # Declare outputs for next jobs
-    outputs:
-      docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          # Checkout as many commits as needed for the difference
-          fetch-depth: 0
-      - shell: pwsh
-        id: check_file_changed
-        run: |
-          # Diff HEAD with the previous commit
-          $diff = git diff --name-only HEAD^ HEAD
-          $commitHash = git rev-parse HEAD
-          $changeList = git diff-tree --no-commit-id --name-only $commitHash -r
-          echo $changeList
-          
-          # Check if a file under src/main/frontend or with the .md extension has changed (added, modified, deleted)
-          $SourceDiff = $changeList | Where-Object { $_ -notmatch '^src/main/frontend/' }
-          $HasDiff = $SourceDiff.Length -gt 0
-          
-          # Set the output named "docs_changed"
-          Write-Host "::set-output name=docs_changed::$HasDiff"
+      runs-on: ubuntu-latest
+      name: Test changed-files
+      outputs:
+        docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+        # Example 1
+
+        # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
+        - shell: pwsh
+          id: check_file_changed
+          run: |
+            git fetch origin master:master
+            $currentBranch=git branch --show-current
+            echo "$currentBranch"
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
+            echo "$changedFiles"
+            foreach ($file in $changedFiles) {
+               echo $file
+               
+            }
+            
+            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch '^src/main/frontend/' }
+            $HasDiff = $SourceDiff.Length -gt 0
+            echo $HasDiff
+            
+            Write-Host "::set-output name=docs_changed::$HasDiff"
+      
           
 
   # Run the job only with "docs_changed" equals "True"
   conditional_job:
-    runs-on: 'ubuntu-20.04'
+    runs-on: ubuntu-latest
     needs: [ conditional_job_check_files ]
     if: needs.conditional_job_check_files.outputs.docs_changed == 'True'
     steps:
