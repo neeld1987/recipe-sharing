@@ -1,6 +1,11 @@
 name: reusable
 on:
   workflow_call:
+    inputs:
+      targetBranch:
+        default: 'master'
+        required: false
+        type : string
     outputs:
       workflowOutput:
         description: "The first output string"
@@ -23,10 +28,11 @@ jobs:
         - shell: pwsh
           id: check_file_changed
           run: |
-            git fetch origin master:master
+            $targetBranch = ${{inputs.targetBranch}}
+            git fetch origin $targetBranch:$targetBranch
             $currentBranch=git branch --show-current
             echo "$currentBranch"
-            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch master)
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch $targetBranch)
             echo "$changedFiles"
             foreach ($file in $changedFiles) {
                echo $file
