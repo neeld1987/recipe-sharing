@@ -33,7 +33,7 @@ jobs:
             git fetch origin ${{ inputs.targetBranch }}:${{ inputs.targetBranch }}
             $currentBranch=git branch --show-current
             echo "$currentBranch"
-            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch $targetBranch1)
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch ${{ inputs.targetBranch }})
             echo "$changedFiles"
             foreach ($file in $changedFiles) {
                echo $file
