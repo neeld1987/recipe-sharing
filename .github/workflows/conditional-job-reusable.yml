@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       targetBranch:
-        default: 'master'
+        default: master
         required: false
         type : string
     outputs:
