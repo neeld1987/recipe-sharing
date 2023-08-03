@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       targetBranch:
-        default: 'master'
+        default: master
         required: false
         type : string
     outputs:
@@ -29,6 +29,7 @@ jobs:
           id: check_file_changed
           run: |
             $targetBranch = ${{inputs.targetBranch}}
+            echo $targetBranch
             git fetch origin $targetBranch:$targetBranch
             $currentBranch=git branch --show-current
             echo "$currentBranch"
