@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
     public RecipeCreator saveUser(UserDTO userDto) {
         /*
         Save user in database
+
+        meaningless changes to test revert
          */
         RecipeCreator user = new RecipeCreator();
         user.setUserName(userDto.getUserName());

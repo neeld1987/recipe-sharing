@@ -21,6 +21,8 @@ public class RecipeServiceImpl implements RecipeService{
     public Recipe saveRecipe(RecipeDTO recipeDTO, RecipeCreator recipeCreator) {
         /*
         Create recipe and save it in database
+
+        meaningless changes to test revert
          */
         Recipe recipe = new Recipe();
         recipe.setDescription(recipeDTO.getDescription());

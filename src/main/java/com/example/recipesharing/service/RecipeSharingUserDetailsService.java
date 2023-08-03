@@ -26,7 +26,6 @@ public class RecipeSharingUserDetailsService implements UserDetailsService {
 
         if (user != null) {
             Set<GrantedAuthority> authorities = new HashSet<>();
-            // hardcoding authority because we don't want to handle Authorization now
             authorities.add(new SimpleGrantedAuthority("USER"));
             return new org.springframework.security.core.userdetails.User(user.getUserName(),
                     user.getPassword(), authorities);
