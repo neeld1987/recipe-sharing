@@ -1,0 +1,51 @@
+name: reusable
+on:
+  workflow_call:
+    inputs:
+      targetBranch:
+        default: 'master'
+        required: false
+        type: string
+      package:
+          required: true
+          type: string
+    outputs:
+      workflowOutput:
+        description: "The first output string"
+        value: ${{ jobs.conditional_job_check_files.outputs.docs_changed }}
+
+jobs:
+  conditional_job_check_files:
+      runs-on: ubuntu-latest
+      name: Test changed-files
+      outputs:
+        docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+        # Example 1
+
+        # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
+        - shell: pwsh
+          id: check_file_changed
+          run: |
+            #$targetBranch1=${{ inputs.targetBranch }} bbbb
+            echo the target branch is ${{ inputs.targetBranch }}
+            git fetch origin ${{ inputs.targetBranch }}:${{ inputs.targetBranch }}
+            $currentBranch=git branch --show-current
+            echo "$currentBranch"
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch ${{ inputs.targetBranch }})
+            echo "$changedFiles"
+            foreach ($file in $changedFiles) {
+               echo $file
+               
+            }
+            
+            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch '${{ inputs.package }}' }
+            $HasDiff = $SourceDiff.Length -gt 0
+            echo $HasDiff
+            
+            echo "::set-output name=docs_changed::$HasDiff"
+      
