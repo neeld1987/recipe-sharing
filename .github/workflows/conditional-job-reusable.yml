@@ -43,7 +43,7 @@ jobs:
                
             }
             
-            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch ${{ inputs.package }} }
+            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch '${{ inputs.package }}' }
             $HasDiff = $SourceDiff.Length -gt 0
             echo $HasDiff
             
