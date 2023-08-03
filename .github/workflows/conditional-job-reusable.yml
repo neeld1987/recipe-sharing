@@ -3,9 +3,9 @@ on:
   workflow_call:
     inputs:
       targetBranch:
-        default: master
+        default: 'master'
         required: false
-        type : string
+        type: string
     outputs:
       workflowOutput:
         description: "The first output string"
