@@ -6,6 +6,8 @@ on:
 jobs:
   job1:
     uses: ./.github/workflows/conditional-job-reusable.yml
+    with:
+      targetBranch: master
 
   conditional_job:
     runs-on: ubuntu-latest
