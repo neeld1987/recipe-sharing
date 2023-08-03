@@ -28,8 +28,8 @@ jobs:
         - shell: pwsh
           id: check_file_changed
           run: |
-            $targetBranch = ${{inputs.targetBranch}}
-            echo $targetBranch
+            $targetBranch=${{ inputs.targetBranch }}
+            echo the target branch is ${{ inputs.targetBranch }}
             git fetch origin ${targetBranch}:${targetBranch}
             $currentBranch=git branch --show-current
             echo "$currentBranch"
