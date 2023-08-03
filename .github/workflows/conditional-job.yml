@@ -3,7 +3,7 @@ on:
   push:
 
   # Run the job only with "docs_changed" equals "True"
-  jobs:
+jobs:
   conditional_job:
     runs-on: ubuntu-latest
     uses: ./.github/workflows/conditional-job-reusable.yml
