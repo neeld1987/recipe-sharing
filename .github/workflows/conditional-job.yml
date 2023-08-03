@@ -8,6 +8,7 @@ jobs:
     uses: ./.github/workflows/conditional-job-reusable.yml
     with:
       targetBranch: master
+      package: ^src/main/frontend/
 
   conditional_job:
     runs-on: ubuntu-latest

@@ -6,6 +6,9 @@ on:
         default: 'master'
         required: false
         type: string
+      package:
+          required: true
+          type: string
     outputs:
       workflowOutput:
         description: "The first output string"
@@ -40,7 +43,7 @@ jobs:
                
             }
             
-            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch '^src/main/frontend/' }
+            $SourceDiff = $changedFiles | Where-Object { $_ -notmatch ${{ inputs.package }} }
             $HasDiff = $SourceDiff.Length -gt 0
             echo $HasDiff
             
