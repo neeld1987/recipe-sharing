@@ -7,7 +7,7 @@ jobs:
       runs-on: ubuntu-latest
       name: Test changed-files
       outputs:
-        docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
+        output1: ${{ steps.check_file_changed.outputs.docs_changed }}
       steps:
         - uses: actions/checkout@v3
           with:
@@ -33,5 +33,5 @@ jobs:
             $HasDiff = $SourceDiff.Length -gt 0
             echo $HasDiff
             
-            Write-Host "::set-output name=docs_changed::$HasDiff"
+            echo "::set-output name=docs_changed::$HasDiff"
       
