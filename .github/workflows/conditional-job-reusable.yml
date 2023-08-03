@@ -28,12 +28,12 @@ jobs:
         - shell: pwsh
           id: check_file_changed
           run: |
-            $targetBranch=${{ inputs.targetBranch }}
+            $targetBranch1=${{ inputs.targetBranch }}
             echo the target branch is ${{ inputs.targetBranch }}
             git fetch origin ${targetBranch}:${targetBranch}
             $currentBranch=git branch --show-current
             echo "$currentBranch"
-            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch $targetBranch)
+            $changedFiles=git diff --name-only $currentBranch $(git merge-base $currentBranch $targetBranch1)
             echo "$changedFiles"
             foreach ($file in $changedFiles) {
                echo $file
