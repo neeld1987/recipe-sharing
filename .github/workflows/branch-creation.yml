@@ -21,4 +21,4 @@ jobs:
           echo "$currentBranch"
           git fetch origin master:master
           git checkout -b release/v1.0
-          git push
+          git push --set-upstream origin release/v1.0
