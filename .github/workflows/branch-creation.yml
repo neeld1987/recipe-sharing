@@ -16,4 +16,7 @@ jobs:
         id: create-branch
         run: |
           echo "Hello world printed"
+          $currentBranch=git branch --show-current
+          echo "$currentBranch"
+          git fetch origin master:master
           git checkout -b release/v1.0
