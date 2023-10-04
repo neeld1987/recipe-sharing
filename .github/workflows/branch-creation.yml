@@ -1,4 +1,4 @@
-name: A test workflow title
+name: branch creation
 on:
   workflow_dispatch:
 
