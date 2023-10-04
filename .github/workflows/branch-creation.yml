@@ -16,7 +16,7 @@ jobs:
       - shell: pwsh
         id: create-branch
         run: |
-          echo "Hello world printed"
+          echo "Hello world printed again"
           $currentBranch=git branch --show-current
           echo "$currentBranch"
           git fetch origin master:master
