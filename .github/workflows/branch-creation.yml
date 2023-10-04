@@ -12,9 +12,8 @@ jobs:
         run: |
           echo "This workflow should not be triggered with workflow_dispatch on a branch other than master"
           exit 1
-
-      - name: Print hello world
       - shell: pwsh
+        id: create-branch
         run: |
           echo "Hello world printed"
           git branch release/v1.0
