@@ -12,3 +12,6 @@ jobs:
         run: |
           echo "This workflow should not be triggered with workflow_dispatch on a branch other than master"
           exit 1
+
+      - name: Print hello world
+        run: echo "Hello world!"
