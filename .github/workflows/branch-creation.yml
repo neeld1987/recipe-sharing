@@ -16,4 +16,4 @@ jobs:
         id: create-branch
         run: |
           echo "Hello world printed"
-          git branch release/v1.0
+          git checkout -b release/v1.0
