@@ -38,6 +38,8 @@ public class RecipeSharingController {
             throw new EntityAlreadyExistException(RecipeCreator.class, "userName", userDto.getUserName());
         }
 
+        // test comment
+
         RecipeCreator recipeUser = userService.saveUser(userDto);
         return new ResponseEntity<>(recipeUser, HttpStatus.CREATED);
     }
