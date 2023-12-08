@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @Validated
 @EnableWebSecurity
-public class RecipeSharingController {
+public class RecipeController {
 
     @Autowired
     private UserService userService;
